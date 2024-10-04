@@ -1,12 +1,18 @@
-// React
-import React, { Fragment } from "react";
+/**
+ * React Compontents
+ */
+import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
-//Common Include
+/**
+ * Common Include
+ */
 import Menu from "../Components/Common/Menu";
 import Footer from "../Components/Common/Footer";
 
-//Compontents Pages
+/**
+ * Compontents Pages
+ */
 import Home from "../Components/Home";
 import About from "../Components/Page/About";
 import Contact from "../Components/Page/Contact";
