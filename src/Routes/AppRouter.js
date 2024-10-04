@@ -19,11 +19,13 @@ import Contact from "../Components/Page/Contact";
 
 function AppRouter() {
   return (
-    <Router basename={"/myreactapp"}>
-      <Menu />
-      <Route exact path={`/`} component={Home} />
-      <Route path={`/about`} component={About} />
-      <Route path={`/contact`} component={Contact} />
+    <Router basename={"/"}>
+      <header><Menu /></header>
+      <main>
+        <Route exact path={`/`} component={Home} />
+        <Route path={`/about`} component={About} />
+        <Route path={`/contact`} component={Contact} />
+      </main>
       <Footer />
     </Router>
   );
