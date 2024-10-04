@@ -1,11 +1,14 @@
-import React, { Fragment } from "react";
+import { useParams } from 'react-router-dom';
+import FetchDoc from "../Api/FetchDoc.jsx";
 
 function Update() {
+    const { id } = useParams();
+
   return (
-    <Fragment>
-      <h1>Welcome to Contact Page!</h1>
-      <p>Contact page...</p>
-    </Fragment>
+    <div>
+      <h1>Edit Entry {id}</h1>
+      <FetchDoc />
+    </div>
   );
 }
 
