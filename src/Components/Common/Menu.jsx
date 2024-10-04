@@ -1,15 +1,17 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 
-// span tabs for whitespace &nbsp won't work.
-
 function Menu() {
   return (
     <Fragment>
-      <Link to={`/`}>Home</Link> | <span></span>
-      <Link to={`/about`}>About</Link> | <span></span>
-      <Link to={`/contact`}>Contact</Link>
-      <hr />
+      <h1>SSR Editor</h1>
+      <nav>
+        <ul>
+          <li><Link to={'/'}>Home </Link></li>
+          <li><Link to={'/about'}>About</Link></li>
+          <li><Link to={'/contact'}>Contact</Link></li>
+        </ul>
+      </nav>
     </Fragment>
   );
 }
