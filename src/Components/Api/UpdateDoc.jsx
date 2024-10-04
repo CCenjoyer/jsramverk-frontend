@@ -12,4 +12,3 @@ function updateEntry(id = "null", updatedData) {
       })
       .catch((error) => console.error('Error updating entry:', error));
 }
-  

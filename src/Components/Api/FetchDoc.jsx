@@ -1,9 +1,10 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useState, useEffect } from "react";
 
 const FetchDoc = () => {
     const { id } = useParams();
     const [docs, setDocs] = useState(null);
+    const history = useHistory();
 
     useEffect(() => {
         fetch(`https://jsramverk-josf23-gtdeabgchjdefsgb.swedencentral-01.azurewebsites.net/docs/${id}`)
@@ -28,12 +29,34 @@ const FetchDoc = () => {
         }));
     };
 
+    // Handle form submission for PUT request
+    const handleSubmit = (e) => {
+        e.preventDefault(); // Prevent default form submission behavior
+
+        fetch(`https://jsramverk-josf23-gtdeabgchjdefsgb.swedencentral-01.azurewebsites.net/docs/${id}`, {
+            method: "PUT", // Use PUT method
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(docs) // Send the updated document data as JSON
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            if (data.success) {
+                history.push('/');
+            } else {
+                alert("Failed to update document.");
+            }
+        })
+        .catch((err) => console.error("Error updating document:", err));
+    };
+
     return (
         <div>
             <ul>
                 {docs ? (
-                    <div>   
-                    <form method="POST" action="/create" class="new-doc">
+                <div>  
+                    <form onSubmit={handleSubmit} className="new-doc">
                         <label for="title">Title:</label>
                         <input 
                             type="text" 
@@ -49,7 +72,7 @@ const FetchDoc = () => {
                             onChange={handleInputChange}
                         />
                 
-                        <input type="submit" value="Create" />
+                        <input type="submit" value="Apply Changes" />
                     </form>
                 </div>
                 ) : (
