@@ -17,17 +17,21 @@ import Index from "../Components/Index";
 import Update from "../Components/Page/Update";
 import About from "../Components/Page/About";
 import Contact from "../Components/Page/Contact";
+import Create from "../Components/Page/Create";
 
 function AppRouter() {
   return (
     <Router basename={"/"}>
-      <header><Menu /></header>
+      <header>
+        <Menu />
+      </header>
       <main>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/update/:id" element={<Update />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/create" element={<Create />} />
         </Routes>
       </main>
       <Footer />
