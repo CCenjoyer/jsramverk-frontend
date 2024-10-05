@@ -3,8 +3,8 @@ import React from 'react';
 const Footer = () => {
     return (
         <>
-            <footer class="footer">
-                <p class="copyright">&copy; OW & JS</p>
+            <footer className="footer">
+                <p className="copyright">&copy; OW & JS</p>
             </footer>
         </>
     )

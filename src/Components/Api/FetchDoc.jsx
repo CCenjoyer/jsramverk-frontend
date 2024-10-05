@@ -1,10 +1,10 @@
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
 
 const FetchDoc = () => {
     const { id } = useParams();
     const [docs, setDocs] = useState(null);
-    const history = useHistory();
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch(`https://jsramverk-josf23-gtdeabgchjdefsgb.swedencentral-01.azurewebsites.net/docs/${id}`)
@@ -43,7 +43,7 @@ const FetchDoc = () => {
         .then((res) => res.json())
         .then((data) => {
             if (data.success) {
-                history.push('/');
+                navigate('/');
             } else {
                 alert("Failed to update document.");
             }
