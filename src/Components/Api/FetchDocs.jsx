@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
+const apiKey = process.env.REACT_APP_API_LINK;
 
 const FetchDocs = () => {
     const [docs, setDocs] = useState([]);
 
     useEffect(() => {
-        fetch("https://jsramverk-josf23-gtdeabgchjdefsgb.swedencentral-01.azurewebsites.net/docs")
+        fetch(apiKey + "/docs")
         .then((res) => res.json())
         .then((data) => {
             console.log(data); // Inspect the data structure

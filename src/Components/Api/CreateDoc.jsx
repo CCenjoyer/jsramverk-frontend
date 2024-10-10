@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+const apiKey = process.env.REACT_APP_API_LINK;
 
 const CreateDoc = () => {
     const [newDoc, setNewDoc] = useState({
@@ -21,7 +22,7 @@ const CreateDoc = () => {
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevent default form submission behavior
 
-        fetch('https://jsramverk-josf23-gtdeabgchjdefsgb.swedencentral-01.azurewebsites.net/docs', {
+        fetch(apiKey + '/docs', {
             method: "POST", // Use POST method
             headers: {
                 "Content-Type": "application/json"
