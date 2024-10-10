@@ -18,7 +18,7 @@ const FetchDoc = () => {
             }
         })
         .catch((err) => console.error("Error fetching data:", err));
-    }, []);
+    }, [id]);
 
     // Handle input changes
     const handleInputChange = (e) => {
