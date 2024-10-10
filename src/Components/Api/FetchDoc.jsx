@@ -57,7 +57,7 @@ const FetchDoc = () => {
                 {docs ? (
                 <div>  
                     <form onSubmit={handleSubmit} className="new-doc">
-                        <label for="title">Title:</label>
+                        <label htmlFor="title">Title:</label>
                         <input 
                             type="text" 
                             name="title" 
@@ -65,7 +65,7 @@ const FetchDoc = () => {
                             onChange={handleInputChange}
                         />
                 
-                        <label for="content">Content</label>
+                        <label htmlFor="content">Content</label>
                         <textarea 
                             name="content" 
                             value={docs.content}

@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+
 
 const FetchDocs = () => {
     const [docs, setDocs] = useState([]);
@@ -21,10 +23,11 @@ const FetchDocs = () => {
         <div>
             <ul>
                 {docs.length > 0 ? (
+                    
                     docs.map((doc) => (
                         <li key={doc._id}>
                             <h3>
-                                <a href={`/update/${doc._id}`}>Document Title: {doc.title}</a>
+                                <Link to={`/update/${doc._id}`}>{doc.title}</Link>
                             </h3>
                         </li>
                     ))

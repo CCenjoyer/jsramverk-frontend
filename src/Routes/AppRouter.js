@@ -20,8 +20,10 @@ import Contact from "../Components/Page/Contact";
 import Create from "../Components/Page/Create";
 
 function AppRouter() {
+  const basename = window.location.hostname.includes('student.bth.se') ? '/~josf23/editor' : '/';
+
   return (
-    <Router basename={"/"}>
+    <Router basename={basename}>
       <header>
         <Menu />
       </header>
