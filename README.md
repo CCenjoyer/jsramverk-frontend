@@ -16,5 +16,10 @@ npm install
 npm start
 ```
 
+## To run tests:
+```
+npm test
+```
+
 ## Selection of front-end framework:
 We choose to work with the framework react because it's the most common used js framework in the corporate world.
