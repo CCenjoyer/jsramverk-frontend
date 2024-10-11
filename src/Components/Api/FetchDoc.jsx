@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
+const apiKey = process.env.REACT_APP_API_LINK;
 
 const FetchDoc = () => {
     const { id } = useParams();
@@ -7,7 +8,7 @@ const FetchDoc = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch(`https://jsramverk-josf23-gtdeabgchjdefsgb.swedencentral-01.azurewebsites.net/docs/${id}`)
+        fetch(apiKey + `/docs/${id}`)
         .then((res) => res.json())
         .then((data) => {
             if (data.success) {
@@ -32,7 +33,7 @@ const FetchDoc = () => {
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevent default form submission behavior
 
-        fetch(`https://jsramverk-josf23-gtdeabgchjdefsgb.swedencentral-01.azurewebsites.net/docs/${id}`, {
+        fetch(apiKey + `/docs/${id}`, {
             method: "PUT", // Use PUT method
             headers: {
                 "Content-Type": "application/json"
