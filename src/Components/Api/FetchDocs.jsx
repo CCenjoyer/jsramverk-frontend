@@ -9,7 +9,7 @@ const FetchDocs = () => {
         fetch("https://jsramverk-josf23-gtdeabgchjdefsgb.swedencentral-01.azurewebsites.net/docs")
         .then((res) => res.json())
         .then((data) => {
-            console.log(data); // Inspect the data structure
+            // console.log(data); // Inspect the data structure
             if (data.success && Array.isArray(data.data)) {
                 setDocs(data.data); // Accessing the array inside the `data` property
             } else {

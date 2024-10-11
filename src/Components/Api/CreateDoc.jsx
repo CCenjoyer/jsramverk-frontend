@@ -46,17 +46,19 @@ const CreateDoc = () => {
                 <input 
                     type="text" 
                     name="title" 
+                    id="title"
                     value={newDoc.title} 
                     onChange={handleInputChange}
-                    required // Mark field as required
+                    required
                 />
         
                 <label htmlFor="content">Content:</label>
                 <textarea 
                     name="content" 
+                    id="content"
                     value={newDoc.content}
                     onChange={handleInputChange}
-                    required // Mark field as required
+                    required
                 />
         
                 <input type="submit" value="Create Document" />
