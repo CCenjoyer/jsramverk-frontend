@@ -35,7 +35,10 @@ function AppRouter() {
           {/* <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} /> */}
           <Route path="/create" element={<Create />} />
+
           <Route path="/login" element={<Login />} />
+          
+          <Route path="*" element={<h1>Page Not Found</h1>} />
         </Routes>
       </main>
       <Footer />

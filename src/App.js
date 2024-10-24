@@ -4,8 +4,8 @@ function App() {
   return (
     <div className="App">
         <AppRouter />
-        <div class="toast">
-          <div class="toast-body"></div>
+        <div className="toast">
+          <div className="toast-body"></div>
         </div>
     </div>
   );

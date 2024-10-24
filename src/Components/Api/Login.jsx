@@ -9,8 +9,7 @@ const LoginForm = () => {
     const navigate = useNavigate();
 
     const login = async () => {
-        console.log("Logging in");
-        console.log(credentials);
+        console.log("Attempting to log in");
         try {
             const response = await fetch(`${apiLink}/auth/login`, {
                 method: 'POST',
@@ -26,8 +25,18 @@ const LoginForm = () => {
             const result = await response.json();
 
             if (response.ok) {
+                sessionStorage.setItem('token', result.data.token);
+                sessionStorage.setItem('user', JSON.stringify({ email: result.data.user.email }));
+
+                console.log(sessionStorage.getItem('token'));
+                console.log(sessionStorage.getItem('user'));
                 console.log('Logged in');
                 Toast('Logged in');
+
+                // Dispatch custom event
+                const event = new Event('userLoggedIn');
+                window.dispatchEvent(event);
+
                 navigate('/');
             } else {
                 Toast(result.errors.detail);
@@ -38,7 +47,7 @@ const LoginForm = () => {
     };
 
     const register = async () => {
-        console.log("Registering");
+        console.log("Attempting register");
         console.log(credentials);
         try {
             const response = await fetch(`${apiLink}/auth/register`, {
@@ -55,12 +64,15 @@ const LoginForm = () => {
             const result = await response.json();
 
             if (response.ok) {
+                console.log('Successfully Registered');
                 Toast('Successfully Registered');
                 login();
             } else {
-                Toast(result.errors.detail)
+                console.log("Error occurred while registering");
+                Toast(result.errors.detail);
             }
         } catch (error) {
+            Toast('Network error', error);
             console.log('Network error', error);
         }
     };
