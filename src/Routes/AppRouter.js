@@ -18,6 +18,7 @@ import Update from "../Components/Page/Update";
 import About from "../Components/Page/About";
 import Contact from "../Components/Page/Contact";
 import Create from "../Components/Page/Create";
+import Login from "../Components/Page/Login";
 
 function AppRouter() {
   const basename = window.location.hostname.includes('student.bth.se') ? '/~josf23/editor' : '/';
@@ -31,9 +32,10 @@ function AppRouter() {
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/update/:id" element={<Update />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          {/* <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} /> */}
           <Route path="/create" element={<Create />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </main>
       <Footer />

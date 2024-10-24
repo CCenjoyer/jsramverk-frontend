@@ -11,6 +11,7 @@ function Menu() {
           {/* <li><Link to={'/about'}>About</Link></li>
           <li><Link to={'/contact'}>Contact</Link></li> */}
           <li><Link to={'/create'}>Create Doc</Link></li>
+          <li id="login-nav"><Link to={'/login'}>Login</Link></li>
         </ul>
       </nav>
     </Fragment>
