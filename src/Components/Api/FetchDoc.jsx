@@ -1,15 +1,23 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
 const apiKey = process.env.REACT_APP_API_LINK;
+const toast = require('../Common/toast.js');
 
 const FetchDoc = () => {
     const { id } = useParams();
     const [docs, setDocs] = useState(null);
     const navigate = useNavigate();
+    const xAccessToken = sessionStorage.getItem('token');
 
     useEffect(() => {
-        fetch(apiKey + `/docs/${id}`)
-        .then((res) => res.json())
+        console.log("Making GET request to fetch document with ID:", id, "and token:", xAccessToken);
+        fetch(apiKey + `/docs/${id}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "x-access-token": xAccessToken
+        }
+    }).then((res) => res.json())
         .then((data) => {
             if (data.success) {
                 setDocs(data.data); // Accessing the array inside the `data` property
@@ -36,7 +44,8 @@ const FetchDoc = () => {
         fetch(apiKey + `/docs/${id}`, {
             method: "PUT", // Use PUT method
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "x-access-token": xAccessToken
             },
             body: JSON.stringify(docs) // Send the updated document data as JSON
         })
@@ -45,7 +54,7 @@ const FetchDoc = () => {
             if (data.success) {
                 navigate('/');
             } else {
-                alert("Failed to update document.");
+                toast('Failed to update document.');
             }
         })
         .catch((err) => console.error("Error updating document:", err));

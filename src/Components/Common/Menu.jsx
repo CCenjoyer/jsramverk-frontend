@@ -34,6 +34,9 @@ function Menu() {
         navigate('/login');
     };
 
+    // Return the JSX for the Menu component
+    // This will display the navigation links and login/logout button
+    // The user state is used to conditionally render the login/logout button
     return (
         <div>
             <h1>SSR Editor</h1>

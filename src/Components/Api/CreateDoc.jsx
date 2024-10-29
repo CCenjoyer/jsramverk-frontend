@@ -8,6 +8,7 @@ const CreateDoc = () => {
         content: ""
     });
     const navigate = useNavigate();
+    const xAccessToken = sessionStorage.getItem('token');
 
     // Handle input changes
     const handleInputChange = (e) => {
@@ -25,7 +26,8 @@ const CreateDoc = () => {
         fetch(apiKey + '/docs', {
             method: "POST", // Use POST method
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "x-access-token": xAccessToken
             },
             body: JSON.stringify(newDoc) // Send the new document data as JSON
         })

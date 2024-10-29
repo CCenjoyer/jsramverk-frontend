@@ -5,9 +5,19 @@ const apiKey = process.env.REACT_APP_API_LINK;
 
 const FetchDocs = () => {
     const [docs, setDocs] = useState([]);
+    const xAccessToken = sessionStorage.getItem("token");
 
     useEffect(() => {
-        fetch(apiKey + "/docs")
+        console.log("Making GET request to fetch all documents with token:", xAccessToken);
+        fetch(apiKey + "/docs",
+        {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "x-access-token": xAccessToken,
+            },
+        }
+        )
         .then((res) => res.json())
         .then((data) => {
             // console.log(data); // Inspect the data structure
