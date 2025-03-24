@@ -31,7 +31,7 @@ const LoginForm = () => {
                 console.log(sessionStorage.getItem('token'));
                 console.log(sessionStorage.getItem('user'));
                 console.log('Logged in');
-                Toast('Logged in');
+                Toast('Login Successful');
 
                 // Dispatch custom event
                 const event = new Event('userLoggedIn');
@@ -104,7 +104,7 @@ const LoginForm = () => {
                 />
             </label>
             <label className="input-label">
-                Lösenord
+                Password
                 <input
                     type="password"
                     name="password"
@@ -114,10 +114,10 @@ const LoginForm = () => {
                     onChange={handleInputChange}
                 />
             </label>
-            <input type="submit" value="Logga in" className="button green-button" />
+            <input type="submit" value="Login" className="button green-button" />
             <input
                 type="button"
-                value="Registrera"
+                value="Register"
                 className="button blue-button"
                 style={{ marginTop: '10px' }}
                 onClick={(event) => {

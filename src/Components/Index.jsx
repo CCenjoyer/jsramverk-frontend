@@ -4,7 +4,7 @@ import FetchDocs from "./Api/FetchDocs";
 function Home() {
     return (
         <Fragment>
-            <h1>Welcome to Docs Page!</h1>
+            <h1>Documents</h1>
             <FetchDocs />
         </Fragment>
     );

@@ -1,14 +1,12 @@
-import { useParams } from 'react-router-dom';
-import FetchDoc from "../Api/FetchDoc.jsx";
+import React from "react";
 import LoginForm from '../Api/Login.jsx';
-        
+
 function Login() {
-    return (
-      <div>
-        <h1>Login</h1>
-        <LoginForm />
-      </div>
-    );
+  return (
+    <div>
+      <LoginForm />
+    </div>
+  );
 }
 
 export default Login;

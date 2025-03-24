@@ -42,12 +42,16 @@ function Menu() {
             <h1>SSR Editor</h1>
             <nav>
                 <ul>
-                    <li><Link to={'/'}>Home</Link></li>
-                    <li><Link to={'/create'}>Create Doc</Link></li>
+                    <li><Link to={'/'}>My Docs</Link></li>
                     {user ? (
-                        <li className="login-nav">
-                            <Link to={'/'} onClick={logout}>Logout user({user.email})</Link>
-                        </li>
+                        <>
+                            <li>
+                                <Link to={'/create'}>Create Doc</Link>
+                            </li>
+                            <li className="login-nav">
+                                <button style={{ all: 'unset', cursor: 'pointer', color: 'white' }} onClick={logout}>Logout user({user.email})</button>
+                            </li>
+                        </>
                     ) : (
                         <li className="login-nav"><Link to={'/login'}>Login</Link></li>
                     )}
