@@ -4,7 +4,7 @@ function About() {
   return (
     <Fragment>
       <h1>Welcome to About Page!</h1>
-      <p>Welcome to About Page!</p>
+      <p>This is a document editor made in conjunction with the course JSRamverk at BTH.</p>
     </Fragment>
   );
 }

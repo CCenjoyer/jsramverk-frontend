@@ -1,19 +1,19 @@
 body {
     min-height: 100vh;
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+        "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
         monospace;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 * {
     margin: 0;
@@ -113,4 +113,147 @@ footer {
 
 ul {
     list-style-type: none;
+}
+
+/* Login and buttons styling*/
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+}
+
+.button {
+    border: 1px solid #ccc;
+    text-decoration: none;
+    box-sizing: border-box;
+    display: inline-block;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 1.2rem;
+    padding: 0.4rem 1rem;
+    text-align: center;
+    border-radius: 10px;
+    line-height: 1.4;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button:hover {
+    background-color: #ddd;
+    background-image: none;
+    cursor: pointer;
+}
+
+.button:active {
+    background-color: #dcdcdc;
+    background-image: none;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.full-width-button {
+    width: 100%;
+    margin: 0.5rem auto;
+    display: block;
+}
+
+.red-button,
+.green-button,
+.blue-button {
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    border-width: 1px;
+    font-size: 1.4rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.red-button {
+    background-color: #e74c3c;
+    border-color: #e04231;
+    box-shadow: none;
+}
+
+.red-button:hover {
+    background-color: #c0392b;
+}
+
+.red-button:active {
+    background-color: #d13123;
+    box-shadow: none;
+}
+
+.green-button {
+    background-color: #27ae60;
+    border-color: #229954;
+}
+
+.green-button:hover {
+    background-color: #229954;
+}
+
+.green-button:active {
+    background-color: #1e8449;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.blue-button {
+    background-color: #3498db;
+    border-color: #2980b9;
+}
+
+.blue-button:hover {
+    background-color: #2980b9;
+}
+
+.blue-button:active {
+    background-color: #1c6ea4;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.input {
+    font-size: larger;
+    height: 40px;
+    font-family: "Source Sans Pro", sans-serif;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.textarea {
+    height: 5em;
+}
+
+.login-nav {
+    margin-left: auto;
+}
+
+.toast {
+    position: fixed;
+    bottom: 30%;
+    right: 0;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: opacity 500ms, transform 500ms;
+}
+
+.toast.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.toast-body {
+    margin: 28px;
+    padding: 20px 24px;
+    background-color: rgb(147, 233, 255);
+    color: rgb(58, 58, 58);
+    border-radius: 4px;
+}
+.share-doc {
+    display: flex;
+    flex-direction: column;
+    max-width: 350px;
 }

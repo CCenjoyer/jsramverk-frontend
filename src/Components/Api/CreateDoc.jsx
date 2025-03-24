@@ -1,20 +1,22 @@
-import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 const apiKey = process.env.REACT_APP_API_LINK;
 
 const CreateDoc = () => {
     const [newDoc, setNewDoc] = useState({
         title: "",
-        content: ""
+        content: "",
     });
     const navigate = useNavigate();
+    const xAccessToken = sessionStorage.getItem("token");
+    const user = JSON.parse(sessionStorage.getItem("user"));
 
     // Handle input changes
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setNewDoc((prevDoc) => ({
-            ...prevDoc,  // Keep the existing values
-            [name]: value  // Update the value of the changed field (title or content)
+            ...prevDoc, // Keep the existing values
+            [name]: value, // Update the value of the changed field (title or content)
         }));
     };
 
@@ -22,47 +24,51 @@ const CreateDoc = () => {
     const handleSubmit = (e) => {
         e.preventDefault(); // Prevent default form submission behavior
 
-        fetch(apiKey + '/docs', {
+        fetch(apiKey + "/docs", {
             method: "POST", // Use POST method
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "x-access-token": xAccessToken,
             },
-            body: JSON.stringify(newDoc) // Send the new document data as JSON
+            body: JSON.stringify({ ...newDoc, users: [user.email] }), // Send the new document data as JSON
         })
-        .then((res) => res.json())
-        .then((data) => {
-            if (data.success) {
-                navigate('/'); // Navigate back to the homepage or documents list
-            } else {
-                alert("Failed to create document.");
-            }
-        })
-        .catch((err) => console.error("Error creating document:", err));
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.success) {
+                    navigate("/"); // Navigate back to the homepage or documents list
+                } else {
+                    alert("Failed to create document.");
+                }
+            })
+            .catch((err) => console.error("Error creating document:", err));
     };
 
     return (
         <div>
             <form onSubmit={handleSubmit} className="new-doc">
                 <label htmlFor="title">Title:</label>
-                <input 
-                    type="text" 
-                    name="title" 
+                <input
+                    type="text"
+                    name="title"
                     id="title"
-                    value={newDoc.title} 
+                    value={newDoc.title}
                     onChange={handleInputChange}
                     required
                 />
-        
+
                 <label htmlFor="content">Content:</label>
-                <textarea 
-                    name="content" 
+                <textarea
+                    name="content"
                     id="content"
                     value={newDoc.content}
                     onChange={handleInputChange}
-                    required
                 />
-        
-                <input type="submit" value="Create Document" />
+
+                <input
+                    className="green-button"
+                    type="submit"
+                    value="Create Document"
+                />
             </form>
         </div>
     );
