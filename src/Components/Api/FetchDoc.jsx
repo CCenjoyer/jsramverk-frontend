@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { io } from "socket.io-client";
 import toast from "../Common/toast.jsx";
@@ -12,14 +12,18 @@ const FetchDoc = () => {
     const navigate = useNavigate();
     const xAccessToken = sessionStorage.getItem("token");
     const user = JSON.parse(sessionStorage.getItem("user"));
+    let socketRef = useRef(null);
 
     useEffect(() => {
-        if (!user && user.email && xAccessToken) {
+        if (!user && xAccessToken) {
             navigate("/login");
             toast("Please log in to access your documents.");
             return;
         }
-        let socket = io(process.env.REACT_APP_API_LINK);
+
+        // Initialize the socket connection
+        const socket = io(process.env.REACT_APP_API_LINK);
+        socketRef.current = socket; // Store the socket instance in the ref
 
         fetch(apiKey + `/docs/${id}`, {
             method: "GET",
@@ -32,6 +36,7 @@ const FetchDoc = () => {
             .then((data) => {
                 if (data.success && data.data.users.includes(user.email)) {
                     socket.emit("create", data.data._id);
+                    console.log("Creating socket connection...");
                     setDocs(data.data); // Accessing the array inside the `data` property
                 } else {
                     toast("You do not have access to this document.");
@@ -42,19 +47,40 @@ const FetchDoc = () => {
             })
             .catch((err) => console.error("Error fetching data:", err));
 
+        // Listen for document updates from the server
+        socket.on("documentUpdated", ({ title, content }) => {
+            setDocs((prevDocs) => ({
+                ...prevDocs,
+                title,
+                content,
+            }));
+        });
+
         return () => {
             console.log("Disconnecting socket...");
             socket.disconnect();
         };
     }, [id]);
 
-    // Handle input changes
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setDocs((prevDocs) => ({
-            ...prevDocs, // Keep the existing values
-            [name]: value, // Update the value of the changed field (title or content)
-        }));
+        setDocs((prevDocs) => {
+            const updatedDocs = {
+                ...prevDocs,
+                [name]: value,
+            };
+
+            // Emit the updateDocument event through the socket
+            if (socketRef.current) {
+                socketRef.current.emit("updateDocument", {
+                    room: id,
+                    title: updatedDocs.title,
+                    content: updatedDocs.content,
+                });
+            }
+
+            return updatedDocs;
+        });
     };
 
     // Handle form submission for PUT request
