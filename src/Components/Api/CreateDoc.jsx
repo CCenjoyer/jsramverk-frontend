@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 const apiKey = process.env.REACT_APP_API_LINK;
 
@@ -10,6 +10,13 @@ const CreateDoc = () => {
     const navigate = useNavigate();
     const xAccessToken = sessionStorage.getItem("token");
     const user = JSON.parse(sessionStorage.getItem("user"));
+
+    useEffect(() => {
+        if (user === null || xAccessToken === null) {
+            navigate("/login");
+            return;
+        }
+    }, [user, xAccessToken, navigate]);
 
     // Handle input changes
     const handleInputChange = (e) => {
